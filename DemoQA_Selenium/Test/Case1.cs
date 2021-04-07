@@ -24,7 +24,9 @@ namespace DemoQA_Selenium.Test
             pf.LastNamee("Hassan");                        //Entering Last Name
             pf.SelectMale();                               //Selecting Gender as Male
             pf.MobileNumber("03346489594");                //Entering Mobile No
-            Thread.Sleep(10000);
+            
+            Thread.Sleep(5000);
+            pf.PageScrollDown();
             pf.SubmitForm();                                //Submitting the Form
 
 
