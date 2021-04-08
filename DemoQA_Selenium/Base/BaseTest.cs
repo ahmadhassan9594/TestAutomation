@@ -15,10 +15,8 @@ namespace DemoQA_Selenium
         public IWebDriver GetBrowserDriver()
         {
             var OutPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
             Console.WriteLine(OutPutDirectory);
             return new ChromeDriver(OutPutDirectory);
-
         }
 
          [SetUp]
@@ -29,29 +27,10 @@ namespace DemoQA_Selenium
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             
         }
-        
-        public static void softassertion(String expected, String actual)
-        {
-
-            try
-            {
-
-                //Assert.AreEqual(actual, expected);
-
-            }
-            catch (Exception t)
-            {
-
-                //TestUtil.captureScreenshot();
-                Console.WriteLine(t.Message);
-            }
-
-        }
 
          [TearDown]
         public void TeardownAfterEveryTest()
         {
-         
             driver.Close();
             driver.Quit();
             

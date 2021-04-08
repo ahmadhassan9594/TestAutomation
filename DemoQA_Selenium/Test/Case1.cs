@@ -17,25 +17,24 @@ namespace DemoQA_Selenium.Test
         public void FirstCase()
         {
             PractiseForm pf = new PractiseForm(driver);
-            pf.GoTo();                                     //Navigating to URL
-            pf.SelectingForm();                            //Navigating to Forms
-            pf.ClickPractiseForm();                        //Clicking Practise Form
-            pf.FirstNamee("Ahmad");                        //Entering First Name
-            pf.LastNamee("Hassan");                        //Entering Last Name
-            pf.SelectMale();                               //Selecting Gender as Male
-            pf.MobileNumber("03346489594");                //Entering Mobile No
+            pf.NavigatetoUrl();                          //Navigating to URL
+            pf.SelectFormm();                           //Navigating to Forms
+            pf.ClickPractiseForm();                     //Clicking Practise Form
+            pf.EnterFirstName("Ahmad");                 //Entering First Name
+            pf.EnterLastNamee("Hassan");                //Entering Last Name
+            pf.SelectGenderMale();                      //Selecting Gender as Male
+            pf.EnterMobileNumber("0334648959");         //Entering Mobile No
             
             Thread.Sleep(5000);
             pf.PageScrollDown();
-            pf.SubmitForm();                                //Submitting the Form
-
-
+            pf.SubmitForm();                             //Submitting the Form
+            
             //Validating
 
-            string ActualTiltle = pf.ConfirmSubmission();                               //Getting the title of the Form after clicking Submit button
-            string ExpectedTitle = "Thanks for submitting the form";
+            string ActualTiltleofSubmissionForm = pf.ConfirmSubmission();                               //Getting the title of the Form after clicking Submit button
+            string ExpectedTitleofSubmissionForm = "Thanks for submitting the form";
 
-            Assert.AreEqual(ExpectedTitle, ActualTiltle);                                   
+            Assert.AreEqual(ExpectedTitleofSubmissionForm, ActualTiltleofSubmissionForm,"The form failed to submit.");                                   
 
         }
 
@@ -44,33 +43,27 @@ namespace DemoQA_Selenium.Test
         public void SecondCase()
         {
             PractiseForm pf = new PractiseForm(driver);
-            pf.GoTo();                                                                              //Navigating to URL
-            pf.SelectingForm();                                                                     //Clicking on Forms
-            pf.ClickPractiseForm();                                                                 //Clicking on Practise Form
+            pf.NavigatetoUrl();                                                                   //Navigating to URL
+            pf.SelectFormm();                                                                     //Clicking on Forms
+            pf.ClickPractiseForm();                                                               //Clicking on Practise Form
             Thread.Sleep(4000);
-            string FieldColorbeforSubmit = pf.MandatoryCheckFirstNameBeforeSubmit();
-            string Field2 = pf.MandatoryCheckLastNameBeforeSubmit();
-            string Field3 = pf.MandatoryCheckGenderBeforeSubmit();
+            string FirstNameFieldColorbeforeSubmit = pf.MandatoryCheckFirstNameBeforeSubmit();
+            string LastNameFieldColorbeforeSubmit = pf.MandatoryCheckLastNameBeforeSubmit();
+            string GenderFieldColorbeforeSubmit = pf.MandatoryCheckGenderBeforeSubmit();
 
             pf.PageScrollDown();
             pf.SubmitForm();
             
-            string FieldColorAfterSubmit = pf.MandatoryCheckFirstNameAfterSubmit();
-            string Field4 = pf.MandatoryCheckLastNameAfterSubmit();
-            string Field5 = pf.MandatoryCheckGenderAfterSubmit();
+            string FirstNameFieldColorafterSubmit = pf.MandatoryCheckFirstNameAfterSubmit();
+            string LastNameFieldColorafterSubmit = pf.MandatoryCheckLastNameAfterSubmit();
+            string GenderFieldColorafterSubmit = pf.MandatoryCheckGenderAfterSubmit();
 
             Assert.Multiple(() =>
             {
-                Assert.AreNotEqual(FieldColorbeforSubmit, FieldColorAfterSubmit, "First Assert");
-                Assert.AreNotEqual(Field2, Field4, "Second Assert");
-                Assert.AreNotEqual(Field3, Field5, "Asserts are not equal");
-            });
-
-
-
-          
-
-
+                Assert.AreNotEqual(FirstNameFieldColorbeforeSubmit, FirstNameFieldColorafterSubmit, "Mandatory Check is missing on First Name field");
+                Assert.AreNotEqual(LastNameFieldColorbeforeSubmit, LastNameFieldColorafterSubmit, "Mandatory Check is missing on Last name field.");
+                Assert.AreNotEqual(GenderFieldColorbeforeSubmit, GenderFieldColorafterSubmit, "Mandatory Check is missing on Gender field.");
+            });        
         }
     }
 }
